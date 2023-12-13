@@ -15,8 +15,8 @@ namespace TestingDoNetCore.ConsoleApp.AdoDotNetExamples
             //Read();
             //Edit(1);
             //Edit(12);
-            Create("rrr", "uuu", "ggg");
-
+            //Create("rrr", "uuu", "ggg");
+            Delete(5);
         }
 
         public void Read()
@@ -151,9 +151,52 @@ namespace TestingDoNetCore.ConsoleApp.AdoDotNetExamples
             
 
             }
+
+
+        public void Delete (int Id)
+        {
+            SqlConnectionStringBuilder sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
+            {
+                DataSource = ".",
+                InitialCatalog = "Testing",
+                UserID = "sa",
+                Password = "sa@123",
+                TrustServerCertificate = true
+            };
+            SqlConnection connection = new SqlConnection(sqlConnectionStringBuilder.ConnectionString);
+            Console.WriteLine("Connection opening...");
+            connection.Open();
+            Console.WriteLine("Connection opened.");
+
+            string query = @"DELETE FROM [dbo].[Tbl_Blog]
+                             WHERE Blog_Id = @Blog_Id";
+            SqlCommand command = new SqlCommand(query, connection);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(command);
+            command.Parameters.AddWithValue("@Blog_Id", Id);
+            
+            int result = command.ExecuteNonQuery();
+            connection.Close();
+
+            //string message = result > 0 ? "Delete successfully" : " faild";
+            string message;
+            if (result > 0)
+            {
+                message = "Delete successfully";
+            }
+            else
+            {
+                message = "Error";
+            }
+
+            Console.WriteLine(message);
+
+
+
         }
 
-
     }
+
+
+}
 
 
