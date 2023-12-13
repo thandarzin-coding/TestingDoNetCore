@@ -1,1 +1,2 @@
 # TestingDoNetCore
+NuGetPackage = npm 
