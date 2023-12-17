@@ -31,14 +31,6 @@ Console.WriteLine("Hello, World!");
 //Console.WriteLine("Connection closed.");
 
 
-//foreach(DataRow row in dataTable.Rows)
-//{
-//    Console.WriteLine($"Id => {row["Blog_Id"]}");
-//    Console.WriteLine($"Title => {row["Blog_Title"]}");
-//    Console.WriteLine($"Author => {row["Blog_Author"]}");
-//    Console.WriteLine($"Content => {row["Blog_Content"]}");
-//    Console.WriteLine("------------------------");
-//}
 AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
 adoDotNetExample.Run();
 Console.ReadKey();
